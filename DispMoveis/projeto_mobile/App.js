@@ -1,24 +1,63 @@
-import React, {Component} from 'react';
-import { Image, Text, View } from 'react-native';
-import imagem from './assets/gatinho.png';
-import imagem2 from './assets/gatinho2.png';
+import React, { Component } from "react";
+import { StyleSheet, Text, View, Image, TextInput, Button } from "react-native";
  
-class App extends Component{
-  render(){
+class App extends Component {
  
-    let nome ='Tyler';
+  constructor(props) {
+    super(props);
+    this.state = {
+      nome: '',
+      input: ''
+    };
  
+    this.entrar = this.entrar.bind(this);
+  }
+ 
+  entrar() {
+    if(this.state.input === ''){
+      alert('Digite seu nome');
+      return;
+    }
+ 
+    this.setState({nome: 'Bem vindo ' + this.state.input});
+  }
+ 
+  render() {
     return(
-    <View>
-      <Text> Homenagem </Text>
-      <Text> Gatinho </Text>
-      <Text style={{color:'#ff0000', fontSize:25,margin:15}}>GATOS
-      </Text>
-      <Image source={imagem} style={{width:300, height:300}} />
-      <text>{nome}</text>
-      <Image source={imagem2} style={{width:300, height:300}} />
-      <text>{nome}</text>
-    </View>
-  )}
+      <View style={styles.container}>
+ 
+        <TextInput
+        style={styles.input}
+        placeholder = "Digite seu nome "
+        underlineColorAndroid = "transparent"
+        onChangeText = {(texto) => this.setState({input: texto})}
+        />
+        <Button title='Entrar' onPress={this.entrar} />
+ 
+        <Text style={styles.texto}>{this.state.nome}</Text>
+      </View>
+    );
+  }
 }
+ 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  input: {
+    height: 46,
+    borderWidth: 1,
+    borderColor: '#222',
+    margin: 10,
+    fontSize: 20,
+    padding: 10,
+  },
+ 
+  texto:{
+    textAlign: 'center',
+    fontSize:25
+  },
+});
+ 
 export default App;
+ 
