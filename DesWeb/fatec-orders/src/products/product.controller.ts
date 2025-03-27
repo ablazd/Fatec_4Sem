@@ -3,7 +3,7 @@ import { ListProductService } from './services/list-product.service';
 import { GetProductByIdService } from './services/get-product-byid.service';
 
 @Controller('product')
-export class ListProductController {
+export class ProductController {
   constructor(
     private listProductService: ListProductService,
     private getProductByIdService: GetProductByIdService,
